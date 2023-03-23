@@ -25,7 +25,17 @@ $(function () {
 });
 
 function trackTime() {
+  //check the time now 
   var whatimizit = dayjs().hour();
+
+  // check and loop within time blocks
+  $("time-block").each(function () {}
+    var blockOftime = parseInt($(this).attr("id").split("hour")[1])
+
+
+
+
+
 }
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
