@@ -60,5 +60,5 @@ $(document).ready(function () {// document ready function  Code included inside 
   $("#hour17 .description").val(localStorage.getItem("hour-17"));
 
   trackTime();
-  
+
 })
