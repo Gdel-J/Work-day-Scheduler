@@ -1,40 +1,28 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 
+$(document).ready(function () {// document ready function  Code included inside $( document ).ready() will only run once the page Document Object Model (DOM) is ready for JavaScript code to execute. 
 
-
-
-$(document).ready (function () {// document ready function  Code included inside $( document ).ready() will only run once the page Document Object Model (DOM) is ready for JavaScript code to execute. 
-
-
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
 
   var currentDay = $('#currentDay')
   currentDay.text(dayjs().format('MMMM, dddd DD YYYY, h:mm:ss a'))//display the current date
 
   $(".saveBtn").click(function () {// saveBtn click listener 
+    console.log(this)
 
     var text = ($(this).siblings('.description').val()); // from the sibblig html descrition attribute 
     var time = ($(this).parent().attr('id')); //from the parent html id attribute
 
     // Save data  in local storage
-    localStorage.setItem(time,text);
+    localStorage.setItem(time, text);
 
 
   });
 
   function trackTime() {
     //check the time now 
-    var whatimizit = dayjs().hour();// use of dayjs
+    var whatimizit = dayjs().hour(); // use of dayjs to track to current time
 
     // check and loop within time blocks
-    $(".time-block").each (function () {
+    $(".time-block").each(function () {
       var blockOftime = parseInt($(this).attr("id").split("hour")[1]); //The JavaScript number parseInt() method parses a string argument and converts it into an integer value. 
 
       // Verifying the time in order to add  classes using conditional
@@ -48,42 +36,29 @@ $(document).ready (function () {// document ready function  Code included inside
         $(this).removeClass("future");
         $(this).addClass("present");
       }
-      else  {
+      else {
 
         $(this).removeClass("present");
         $(this).removeClass("past");
         $(this).addClass("future");
       }
-    
-  })
+
+    })
 
   }
 
-   // Get item from local storage 
-   $("#hour-8 .description").val(localStorage.getItem("hour-8"));
-   $("#hour-9 .description").val(localStorage.getItem("hour-9"));
-   $("#hour-10 .description").val(localStorage.getItem("hour-10"));
-   $("#hour-11 .description").val(localStorage.getItem("hour-11"));
-   $("#hour-12 .description").val(localStorage.getItem("hour-12"));
-   $("#hour-13 .description").val(localStorage.getItem("hour-13"));
-   $("#hour-14 .description").val(localStorage.getItem("hour-14"));
-   $("#hour-15 .description").val(localStorage.getItem("hour-15"));
-   $("#hour-16 .description").val(localStorage.getItem("hour-16"));
-   $("#hour-17 .description").val(localStorage.getItem("hour-17"));
+  // Get item from local storage 
+  $("#hour8 .description").val(localStorage.getItem("hour-8"));
+  $("#hour9 .description").val(localStorage.getItem("hour-9"));
+  $("#hour10 .description").val(localStorage.getItem("hour-10"));
+  $("#hour11 .description").val(localStorage.getItem("hour-11"));
+  $("#hour12 .description").val(localStorage.getItem("hour-12"));
+  $("#hour13 .description").val(localStorage.getItem("hour-13"));
+  $("#hour14 .description").val(localStorage.getItem("hour-14"));
+  $("#hour15 .description").val(localStorage.getItem("hour-15"));
+  $("#hour16 .description").val(localStorage.getItem("hour-16"));
+  $("#hour17 .description").val(localStorage.getItem("hour-17"));
 
-trackTime();
-
-
-    // TODO: Add code to apply the past, present, or future class to each time
-    // block by comparing the id to the current hour. HINTS: How can the id
-    // attribute of each time-block be used to conditionally add or remove the
-    // past, present, and future classes? How can Day.js be used to get the
-    // current hour in 24-hour time?
-    //
-    // TODO: Add code to get any user input that was saved in localStorage and set
-    // the values of the corresponding textarea elements. HINT: How can the id
-    // attribute of each time-block be used to do this?
-    //
-    // TODO: Add code to display the current date in the header of the page.
-   
+  trackTime();
+  
 })
